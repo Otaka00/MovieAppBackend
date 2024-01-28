@@ -1,18 +1,23 @@
 package com.Sumerge.MovieApp.rest;
 
+import com.Sumerge.MovieApp.response.UserResponse;
 import com.Sumerge.MovieApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-    @RequestMapping("/api/users")
-    public class UserController {
-        @Autowired
-        private UserService userService;
+@RequestMapping("/api/users")
+public class UserController {
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/users/{id}")
+    private ResponseEntity<UserResponse> getEmployeeDetails(@PathVariable("id") long id) {
+        UserResponse user = userService.getEmployeeById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
 
 //        @PostMapping("/register")
 //        public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
