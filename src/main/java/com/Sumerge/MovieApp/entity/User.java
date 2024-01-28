@@ -5,18 +5,20 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(unique = true, name = "username")
+    @Column(unique = true, name="username")
     private String username;
 
     @Column(name = "password")
     private String password;
 
-    public User(Long id, String username, String password) {
-        this.id = id;
+    public User() {
+    }
+
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

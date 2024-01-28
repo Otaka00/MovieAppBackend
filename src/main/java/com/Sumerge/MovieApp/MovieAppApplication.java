@@ -1,5 +1,7 @@
 package com.Sumerge.MovieApp;
 
+import com.Sumerge.MovieApp.dao.UserDAO;
+import com.Sumerge.MovieApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,10 +16,22 @@ public class MovieAppApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(String[] args){
+	public CommandLineRunner commandLineRunner(UserDAO userDAO){
 		return runner-> {
-			System.out.println("Hello World");
+			createUser(userDAO);
 		};
+	}
+
+	private void createUser(UserDAO userDAO) {
+		System.out.println("Creating new user object ...");
+
+		User user1 = new User("kareem", "1414");
+
+		System.out.println("Saving the user ...");
+		userDAO.save(user1);
+
+		System.out.println("Saved the user with generated id = " + user1.getId());
+
 	}
 }
 
