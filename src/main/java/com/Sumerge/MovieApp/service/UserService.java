@@ -1,6 +1,6 @@
 package com.Sumerge.MovieApp.service;
 
-import com.Sumerge.MovieApp.repository.UserRepository;
+import com.Sumerge.MovieApp.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     @Autowired
-    private UserRepository userRepository;
+    private UserRepo userRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;

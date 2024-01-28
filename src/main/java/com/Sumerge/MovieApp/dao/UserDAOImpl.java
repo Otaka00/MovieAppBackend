@@ -21,4 +21,9 @@ public class UserDAOImpl implements UserDAO{
     public void save(User user) {
         entityManager.persist(user);
     }
+
+    @Override
+    public User findById(long id) {
+       return entityManager.find(User.class, id);
+    }
 }
