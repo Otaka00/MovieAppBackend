@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 
 public class UserConfig {
     @Bean
-    public UserService employeeBean() {
+    public UserService userBean() {
         return new UserService();
     }
 
