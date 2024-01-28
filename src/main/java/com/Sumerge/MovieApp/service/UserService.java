@@ -13,17 +13,17 @@ public class UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
-
-    public void registerUser(UserDto userDto) {
-        // Implement user registration logic
-    }
-
-    public String loginUser(LoginForm loginForm) {
-        // Implement user login logic
-        // Use authenticationManager.authenticate and jwtTokenProvider.generateToken
-        String token= "kk";
-        return token;
-    }
+//    @Autowired
+//    private JwtTokenProvider jwtTokenProvider;
+//
+//    public void registerUser(UserDto userDto) {
+//        // Implement user registration logic
+//    }
+//
+//    public String loginUser(LoginForm loginForm) {
+//        // Implement user login logic
+//        // Use authenticationManager.authenticate and jwtTokenProvider.generateToken
+//        String token= "kk";
+//        return token;
+//    }
 }
