@@ -8,10 +8,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     @Autowired
-    private UserRepo userRepository;
+    private UserRepo userRepo;
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private ModelMapper mapper;
+
+    public EmployeeResponse getEmployeeById(int id) {
+        Optional<Employee> employee = employeeRepo.findById(id);
+        EmployeeResponse employeeResponse = mapper.map(employee, EmployeeResponse.class);
+        return employeeResponse;
+    }
 
 //    @Autowired
 //    private JwtTokenProvider jwtTokenProvider;
@@ -26,4 +35,5 @@ public class UserService {
 //        String token= "kk";
 //        return token;
 //    }
+
 }
