@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -25,6 +27,13 @@ public class UserService {
         Optional<User> user = userRepo.findById(id);
         User userResponse = mapper.map(user, User.class);
         return userResponse;
+    }
+
+    public List<User> getAllUsers() {
+        List<User> users = userRepo.findAll();
+        return users.stream()
+                .map(user -> mapper.map(user, User.class))
+                .collect(Collectors.toList());
     }
 
 //    @Autowired
