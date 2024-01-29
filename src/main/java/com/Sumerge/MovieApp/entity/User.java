@@ -1,7 +1,14 @@
 package com.Sumerge.MovieApp.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+
+@Data
 @Entity
+@Builder
 @Table(name = "users")
 public class User {
     @Id
