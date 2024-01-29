@@ -3,31 +3,27 @@ package com.Sumerge.MovieApp.entity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
-
 @Data
 @Entity
-@Builder
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
-    @Column(updatable = false, name = "id", precision = 5)
+    @Column(updatable = false, name = "id")
     private Long id;
 
     @Column(unique = true, name="email")
     private String email;
 
     @Column(name = "password")
-    private String password;
+    private String pass;
 
     public User() {
     }
 
     public User(String email, String password) {
         this.email = email;
-        this.password = password;
+        this.pass = password;
     }
 
     public Long getId() {
@@ -46,12 +42,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return pass;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.pass = password;
     }
 
     @Override
@@ -59,7 +55,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + pass + '\'' +
                 '}';
     }
 }
