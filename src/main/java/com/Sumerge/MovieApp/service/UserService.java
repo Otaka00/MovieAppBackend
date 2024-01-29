@@ -5,7 +5,7 @@ import com.Sumerge.MovieApp.repository.UserRepo;
 import com.Sumerge.MovieApp.response.UserResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,16 +15,16 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+//    @Autowired
+//    private AuthenticationManager authenticationManager;
 
     @Autowired
     private ModelMapper mapper;
 
-    public UserResponse getEmployeeById(long id) {
-        Optional<User> employee = userRepo.findById(id);
-        UserResponse employeeResponse = mapper.map(employee, UserResponse.class);
-        return employeeResponse;
+    public UserResponse getUserById(long id) {
+        Optional<User> user = userRepo.findById(id);
+        UserResponse userResponse = mapper.map(user, UserResponse.class);
+        return userResponse;
     }
 
 //    @Autowired

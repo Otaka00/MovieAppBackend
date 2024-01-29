@@ -14,8 +14,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users/{id}")
-    private ResponseEntity<UserResponse> getEmployeeDetails(@PathVariable("id") long id) {
-        UserResponse user = userService.getEmployeeById(id);
+    private ResponseEntity<UserResponse> getUserDetails(@PathVariable("id") long id) {
+        UserResponse user = userService.getUserById(id);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 

@@ -1,21 +1,11 @@
 package com.Sumerge.MovieApp.response;
 
-import jakarta.persistence.*;
-
-    @Entity
-    @Table(name = "users")
     public class UserResponse {
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        @Column(name = "id")
         private Long id;
 
-        @Column(unique = true, name="username")
         private String username;
 
-        @Column(name = "password")
         private String password;
-
 
         public UserResponse(String username, String password) {
             this.username = username;
