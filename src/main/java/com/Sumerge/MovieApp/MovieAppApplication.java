@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.Sumerge.MovieApp")
 
 public class MovieAppApplication {
 	public static void main(String[] args)  {
