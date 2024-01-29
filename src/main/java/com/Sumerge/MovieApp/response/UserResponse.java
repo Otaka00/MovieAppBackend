@@ -7,11 +7,6 @@ package com.Sumerge.MovieApp.response;
 
         private String password;
 
-        public UserResponse(String username, String password) {
-            this.username = username;
-            this.password = password;
-        }
-
         public Long getId() {
             return id;
         }
