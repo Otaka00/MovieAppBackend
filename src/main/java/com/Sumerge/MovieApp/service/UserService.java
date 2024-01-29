@@ -21,9 +21,9 @@ public class UserService {
     @Autowired
     private ModelMapper mapper;
 
-    public UserResponse getUserById(long id) {
+    public User getUserById(long id) {
         Optional<User> user = userRepo.findById(id);
-        UserResponse userResponse = mapper.map(user, UserResponse.class);
+        User userResponse = mapper.map(user, User.class);
         return userResponse;
     }
 

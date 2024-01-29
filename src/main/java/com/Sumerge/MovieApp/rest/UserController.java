@@ -1,5 +1,6 @@
 package com.Sumerge.MovieApp.rest;
 
+import com.Sumerge.MovieApp.entity.User;
 import com.Sumerge.MovieApp.response.UserResponse;
 import com.Sumerge.MovieApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users/{id}")
-    private ResponseEntity<UserResponse> getUserDetails(@PathVariable("id") long id) {
-        UserResponse user = userService.getUserById(id);
+    private ResponseEntity<User> getUserDetails(@PathVariable("id") long id) {
+        User user = userService.getUserById(id);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
