@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Entity
 @Data
 @Builder
@@ -15,10 +13,10 @@ import java.util.Date;
 @Table(name = "movies")
 public class Movie {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
     private Long id;
     private String title;
-    private Date releaseDate;
+    private String genre;
+    private String director;
     private String description;
-
 }
