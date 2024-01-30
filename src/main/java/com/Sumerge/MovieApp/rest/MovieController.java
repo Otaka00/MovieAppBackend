@@ -8,6 +8,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +23,14 @@ public class MovieController {
         private final UserService userService;
 
         @GetMapping("/{userId}")
+        @PreAuthorize("isAuthenticated()")
         public ResponseEntity<User> getUserData(@PathVariable("userId") Long userId) {
             User user = userService.getUserById(userId);
             return ResponseEntity.status(HttpStatus.OK).body(user);
         }
 
     @GetMapping("/movies/")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = movieService.getAllMovies();
         return ResponseEntity.status(HttpStatus.OK).body(movies);
