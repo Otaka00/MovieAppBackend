@@ -4,6 +4,7 @@ import com.Sumerge.MovieApp.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,9 +14,8 @@ public class Movie {
     @Id
     private Long id;
     private String title;
-    private double voteAverage;
-    private String releaseDate;
-    private String posterPath;
+    private Date releaseDate;
+    private String description;
 
     @ManyToMany(fetch  = FetchType.LAZY)
     @JsonIgnore
