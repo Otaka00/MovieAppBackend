@@ -44,11 +44,11 @@ import java.util.List;
             return ResponseEntity.status(HttpStatus.OK).body(user);
         }
 
-//    @GetMapping("/movies/")
-//    public ResponseEntity<List<User>> getAllMovies() {
-//        List<Movie> movies = userService.getAllMovies();
-//        return ResponseEntity.status(HttpStatus.OK).body(movies);
-//    }
+    @GetMapping("/movies/")
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        List<Movie> movies = movieService.getAllMovies();
+        return ResponseEntity.status(HttpStatus.OK).body(movies);
+    }
 
         @ExceptionHandler({EntityNotFoundException.class})
         public ResponseEntity<String> handleNotFoundException(Exception e) {
