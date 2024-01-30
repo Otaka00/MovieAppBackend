@@ -27,18 +27,6 @@ public class UserController {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
-
-//        @PostMapping("/register")
-//        public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
-//            userService.registerUser(userDto);
-//            return ResponseEntity.ok("User registered successfully");
-//        }
-//
-//        @PostMapping("/login")
-//        public ResponseEntity<JwtResponse> loginUser(@RequestBody LoginForm loginForm) {
-//            String token = userService.loginUser(loginForm);
-//            return ResponseEntity.ok(new JwtResponse(token));
-//        }
 }
 
 
