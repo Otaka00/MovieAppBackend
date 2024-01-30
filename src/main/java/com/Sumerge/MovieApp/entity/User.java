@@ -28,6 +28,11 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String pass;
 
+    public User(String email, String pass) {
+        this.email = email;
+        this.pass = pass;
+    }
+
     public Long getId() {
         return id;
     }

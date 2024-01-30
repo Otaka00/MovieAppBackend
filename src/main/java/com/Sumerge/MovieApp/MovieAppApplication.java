@@ -36,7 +36,7 @@ public class MovieAppApplication {
 	private void readUser(UserDAO userDAO){
 		System.out.println("Creating new user object ...");
 
-		User newUser = new User("Ali", "1414");
+		User newUser = new User("Ali", "Volcano");
 
 		System.out.println("Saving the user ...");
 		userDAO.save(newUser);

@@ -1,7 +1,6 @@
 package com.Sumerge.MovieApp.service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -17,12 +16,13 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "";
+    private static final String SECRET_KEY = "90e78a5375b0cc6d2a0518cb1810416772953847a5287487b37b63d378e3158f";
+
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails){
+    public boolean isTokenValid(String token, UserDetails userDetails) {
         final String userName = extractUserName(token);
         return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
@@ -35,7 +35,7 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    public String generateToken(UserDetails userDetails){
+    public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
     }
 
@@ -53,16 +53,16 @@ public class JwtService {
                 .compact();
     }
 
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
-    private Claims extractAllClaims(String token){
+    private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
                 .setSigningKey(getSignInKey())
-                .build
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
     }
