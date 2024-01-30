@@ -1,13 +1,11 @@
 package com.Sumerge.MovieApp.auth;
 
+import com.Sumerge.MovieApp.entity.User;
 import com.Sumerge.MovieApp.repository.UserRepo;
 import com.Sumerge.MovieApp.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 @Service
@@ -20,10 +18,13 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = User.builder()
-                .password(passwordEncoder.encode(request.getPassword()))
-                .roles("USER")
+        var user = User
+                .builder()
+                .email(request.getEmail())
+                .pass(passwordEncoder.encode(request.getPassword()))
                 .build();
+
+        repository.save(user); // Save the user to the repository
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)

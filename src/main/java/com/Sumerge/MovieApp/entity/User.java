@@ -25,7 +25,7 @@ public class User implements UserDetails {
     @Column(unique = true, name="email")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 1000)
     private String pass;
 
     public User(String email, String pass) {
@@ -73,31 +73,31 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return pass;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
