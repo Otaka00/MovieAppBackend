@@ -16,13 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1")
 public class MovieController {
 
         private final MovieService movieService;
         private final UserService userService;
 
-        @GetMapping("/{userId}")
+        @GetMapping("/users/{userId}")
         @PreAuthorize("isAuthenticated()")
         public ResponseEntity<User> getUserData(@PathVariable("userId") Long userId) {
             User user = userService.getUserById(userId);
