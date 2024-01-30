@@ -28,44 +28,6 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String pass;
 
-    public User(String email, String pass) {
-        this.email = email;
-        this.pass = pass;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPassword(String password) {
-        this.pass = password;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + pass + '\'' +
-                '}';
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
