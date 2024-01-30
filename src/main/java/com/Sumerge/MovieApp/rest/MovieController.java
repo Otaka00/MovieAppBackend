@@ -13,30 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @AllArgsConstructor
-    @RestController
-    @CrossOrigin(origins = {"http://localhost:4200"})
-    @RequestMapping("/api/v1/users")
-    public class MovieController {
+@RestController
+@CrossOrigin(origins = {"http://localhost:4200"})
+@RequestMapping("/api/v1/users")
+public class MovieController {
 
         private final MovieService movieService;
         private final UserService userService;
-
-//        @GetMapping("/{userId}/watchlist")
-//        public List<MovieDto> getWatchlistMovies(@PathVariable Long userId) {
-//            return movieService.getWatchlistMovies(userId);
-//        }
-//
-//        @PostMapping("/{userId}/watchlist")
-//        @ResponseStatus(HttpStatus.CREATED)
-//        public void addMovieToWatchlist(@PathVariable Long userId, @RequestBody MovieDto movieDto) {
-//            movieService.addToWatchlist(userId, movieDto);
-//        }
-//
-//        @DeleteMapping("/{userId}/watchlist/{movieId}")
-//        @ResponseStatus(HttpStatus.NO_CONTENT)
-//        public void removeMovieFromWatchlist(@PathVariable("userId") Long userId, @PathVariable("movieId") Long movieId) {
-//            movieService.removeFromWatchlist(userId, movieId);
-//        }
 
         @GetMapping("/{userId}")
         public ResponseEntity<User> getUserData(@PathVariable("userId") Long userId) {

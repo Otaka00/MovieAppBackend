@@ -2,10 +2,8 @@ package com.Sumerge.MovieApp.service;
 
 import com.Sumerge.MovieApp.entity.User;
 import com.Sumerge.MovieApp.repository.UserRepo;
-import com.Sumerge.MovieApp.response.UserResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
