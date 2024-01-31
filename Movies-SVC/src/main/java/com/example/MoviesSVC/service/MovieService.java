@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +42,15 @@ public Page<Movie> getAllMovies(int page, int size) {
 
     public Movie addMovie(Movie movie) {
         return movieRepo.save(movie);
+    }
+
+    public List<Movie> getAllMoviesForAuthenticatedUser() {
+        // Get the email of the authenticated user
+        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        // Fetch movies based on the user (you might have a User entity linked to Movie entity)
+        // Assuming there's a method like findByUserEmail in your MovieRepo
+        return movieRepo.findByUserEmail(userEmail);
     }
 
 }
