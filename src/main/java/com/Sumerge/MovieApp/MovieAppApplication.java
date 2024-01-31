@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-
 public class MovieAppApplication {
 	public static void main(String[] args)  {
 		SpringApplication.run(MovieAppApplication.class, args);
