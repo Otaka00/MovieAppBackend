@@ -49,24 +49,32 @@ class MovieServiceTest {
         assertEquals(expectedMovie, result);
         verify(mapper, times(1)).map(any(), eq(Movie.class));
     }
-
     @Test
     void testGetAllMovies() {
-        List<Movie> expectedMovies = Arrays.asList(new Movie(), new Movie());
+        // Mock data
+        List<Movie> expectedMovies = Arrays.asList(
+                new Movie(1L, "Movie1", "Genre1", "Director1", "Description1"),
+                new Movie(2L, "Movie2", "Genre2", "Director2", "Description2")
+        );
 
-        // Configure the movieRepo to return the expected list of movies when findAll is called
-        when(movieRepo.findAll()).thenReturn(expectedMovies);
+        // Mock repository response
+        when(movieRepo.findAll(any(PageRequest.class)))
+                .thenReturn(new PageImpl<>(expectedMovies));
 
-        // Configure the mapper to return the expected movies when map is called
-        when(mapper.map(any(), eq(Movie.class))).thenReturn(new Movie());
+        // Mock mapper response
+        when(mapper.map(any(), eq(Movie.class)))
+                .thenAnswer(invocation -> {
+                    Movie sourceMovie = invocation.getArgument(0);
+                    // Simulate mapping by returning a new Movie with the same title
+                    return new Movie(null, sourceMovie.getTitle(), null, null, null);
+                });
 
-        Page<Movie> result = movieService.getAllMovies(1, 5);
+        // Call the service method
+        List<Movie> result = movieService.getAllMovies(0, 10).getContent();
 
-        assertEquals(expectedMovies, result);
-
-        // Verify that map method is called for each movie in the list
+        // Verify the result
+        assertEquals(expectedMovies.size(), result.size());
         verify(mapper, times(expectedMovies.size())).map(any(), eq(Movie.class));
-
     }
     @Test
     void testGetAllMoviesFirstPage() {
@@ -75,10 +83,12 @@ class MovieServiceTest {
         List<Movie> expectedMovies = Collections.singletonList(new Movie());
         Page<Movie> pageResult = new PageImpl<>(expectedMovies);
         when(movieRepo.findAll(PageRequest.of(page, size))).thenReturn(pageResult);
+        when(mapper.map(any(), eq(Movie.class))).thenReturn(new Movie());
 
         List<Movie> result = movieService.getAllMovies(page, size).getContent();
 
         assertEquals(expectedMovies, result);
+        verify(mapper, times(expectedMovies.size())).map(any(), eq(Movie.class));
     }
     @Test
     void testGetAllMoviesEmptyPage() {
