@@ -82,6 +82,11 @@
 <!--			<artifactId>MovieAppBackend</artifactId>-->
 <!--			<version>0.0.1-SNAPSHOT</version>-->
 <!--		</dependency>-->
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>Movies-SVC</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
