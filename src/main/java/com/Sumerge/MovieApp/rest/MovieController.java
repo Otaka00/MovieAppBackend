@@ -6,6 +6,7 @@ import com.Sumerge.MovieApp.service.MovieService;
 import com.Sumerge.MovieApp.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,12 +30,25 @@ public class MovieController {
             return ResponseEntity.status(HttpStatus.OK).body(user);
         }
 
-    @GetMapping("/movies")
+    @GetMapping("/movie-titles")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<List<Movie>> getAllMovies() {
-        List<Movie> movies = movieService.getAllMovies();
+    public ResponseEntity<List<String>> getAllMoviesTitles(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        List<String> movies = movieService.getAllMovieTitles(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(movies);
     }
+
+    @GetMapping("/movies")
+@PreAuthorize("isAuthenticated()")
+public ResponseEntity<Page<Movie>> getAllMovies(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Page<Movie> movies = movieService.getAllMovies(page, size);
+        return ResponseEntity.status(HttpStatus.OK).body(movies);
+    }
+
+
     @GetMapping("/movies/{id}")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Movie> getMovieById(@PathVariable("id") long id) {

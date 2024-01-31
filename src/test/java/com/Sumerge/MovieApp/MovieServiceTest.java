@@ -9,8 +9,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,13 +60,37 @@ class MovieServiceTest {
         // Configure the mapper to return the expected movies when map is called
         when(mapper.map(any(), eq(Movie.class))).thenReturn(new Movie());
 
-        List<Movie> result = movieService.getAllMovies();
+        Page<Movie> result = movieService.getAllMovies(1, 5);
 
         assertEquals(expectedMovies, result);
 
         // Verify that map method is called for each movie in the list
         verify(mapper, times(expectedMovies.size())).map(any(), eq(Movie.class));
 
+    }
+    @Test
+    void testGetAllMoviesFirstPage() {
+        int page = 0;
+        int size = 10;
+        List<Movie> expectedMovies = Collections.singletonList(new Movie());
+        Page<Movie> pageResult = new PageImpl<>(expectedMovies);
+        when(movieRepo.findAll(PageRequest.of(page, size))).thenReturn(pageResult);
+
+        List<Movie> result = movieService.getAllMovies(page, size).getContent();
+
+        assertEquals(expectedMovies, result);
+    }
+    @Test
+    void testGetAllMoviesEmptyPage() {
+        int page = 2;
+        int size = 10;
+        List<Movie> expectedMovies = Collections.emptyList();
+        Page<Movie> pageResult = new PageImpl<>(expectedMovies);
+        when(movieRepo.findAll(PageRequest.of(page, size))).thenReturn(pageResult);
+
+        List<Movie> result = movieService.getAllMovies(page, size).getContent();
+
+        assertEquals(expectedMovies, result);
     }
 }
 

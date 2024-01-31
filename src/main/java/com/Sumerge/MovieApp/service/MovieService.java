@@ -4,6 +4,8 @@ import com.Sumerge.MovieApp.model.Movie;
 import com.Sumerge.MovieApp.repository.MovieRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,10 +25,16 @@ public class MovieService {
         Movie movieResponse = mapper.map(movie, Movie.class);
         return movieResponse;
     }
-    public List<Movie> getAllMovies() {
-        List<Movie> movies = movieRepo.findAll();
-        return movies.stream()
-                .map(movie -> mapper.map(movie, Movie.class))
-                .collect(Collectors.toList());
+
+public Page<Movie> getAllMovies(int page, int size) {
+    return movieRepo.findAll(PageRequest.of(page, size))
+            .map(movie -> mapper.map(movie, Movie.class));
+}
+
+    public List<String> getAllMovieTitles(int page, int size) {
+        return movieRepo.findAll(PageRequest.of(page, size))
+                .map(Movie::getTitle)
+                .toList();
     }
+
 }
