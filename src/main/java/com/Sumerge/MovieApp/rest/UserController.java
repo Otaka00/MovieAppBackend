@@ -10,19 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping("/api/v1")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping("/users/{id}")
     private ResponseEntity<User> getUserDetails(@PathVariable("id") long id) {
         User user = userService.getUserById(id);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
-    @CrossOrigin(origins = "http://localhost:4200/")
-    @GetMapping("/users/")
+    @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(users);

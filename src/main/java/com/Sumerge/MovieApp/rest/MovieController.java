@@ -29,11 +29,17 @@ public class MovieController {
             return ResponseEntity.status(HttpStatus.OK).body(user);
         }
 
-    @GetMapping("/movies/")
+    @GetMapping("/movies")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = movieService.getAllMovies();
         return ResponseEntity.status(HttpStatus.OK).body(movies);
+    }
+    @GetMapping("/movies/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<Movie> getMovieById(@PathVariable("id") long id) {
+        Movie movie = movieService.getMovieById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(movie);
     }
 
         @ExceptionHandler({EntityNotFoundException.class})
