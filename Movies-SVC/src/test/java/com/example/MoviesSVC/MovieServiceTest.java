@@ -1,8 +1,8 @@
-package com.Sumerge.MovieApp;
+package com.example.MoviesSVC;
 
-import com.Sumerge.MovieApp.model.Movie;
-import com.Sumerge.MovieApp.repository.MovieRepo;
-import com.Sumerge.MovieApp.service.MovieService;
+import com.example.MoviesSVC.model.Movie;
+import com.example.MoviesSVC.repository.MovieRepo;
+import com.example.MoviesSVC.service.MovieService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
