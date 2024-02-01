@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/movies")
 public class MovieController {
 
     private final MovieService movieService;
@@ -29,7 +29,7 @@ public class MovieController {
         List<String> movies = movieService.getAllMovieTitles(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(movies);
     }
-@GetMapping("/movies")
+@GetMapping()
 @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Page<Movie>> getAllMovies(
             @RequestParam(defaultValue = "0") int page,
@@ -38,7 +38,7 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.OK).body(movies);
     }
 
-    @GetMapping("/movies/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Movie> getMovieById(@PathVariable("id") long id) {
         Movie movie = movieService.getMovieById(id);

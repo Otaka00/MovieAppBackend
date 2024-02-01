@@ -1,7 +1,7 @@
 package com.example.MoviesSVC;
 
 import com.example.MoviesSVC.model.Movie;
-import com.example.MoviesSVC.repository.MovieRepo;
+import com.example.MoviesSVC.repository.MovieRepository;
 import com.example.MoviesSVC.service.MovieService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 class MovieServiceTest {
 
     @Mock
-    private MovieRepo movieRepo;
+    private MovieRepository movieRepo;
 
     @Mock
     private ModelMapper mapper;
