@@ -1,7 +1,7 @@
 // AppConfig.java
 package com.example.MoviesSVC.configuration;
 
-import com.Sumerge.MovieApp.repository.UserRepo;
+import com.Sumerge.MovieApp.repository.UserRepository;
 import com.Sumerge.MovieApp.service.UserService;
 import com.example.MoviesSVC.service.MovieService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-    private final UserRepo repository;
+    private final UserRepository repository;
     @Bean
     public MovieService movieBean() {
         return new MovieService();

@@ -1,6 +1,6 @@
 package com.Sumerge.MovieApp.configuration;
 
-import com.Sumerge.MovieApp.repository.UserRepo;
+import com.Sumerge.MovieApp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UserRepo repository;
+    private final UserRepository repository;
     @Bean
     public UserDetailsService userDetailsService(){
         return email -> repository.findByEmail(email)

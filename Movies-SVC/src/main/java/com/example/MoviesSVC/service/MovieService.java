@@ -39,17 +39,17 @@ public Page<Movie> getAllMovies(int page, int size) {
                 .toList();
     }
 
-    public Movie addMovie(Movie movie) {
-        return movieRepo.save(movie);
-    }
-
-    public Optional<Movie> getAllMoviesForAuthenticatedUser() {
-        // Get the email of the authenticated user
-        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        // Fetch movies based on the user (you might have a User entity linked to Movie entity)
-        // Assuming there's a method like findByUserEmail in your MovieRepo
-        return movieRepo.findByTitle(userEmail);
-    }
+//    public Movie addMovie(Movie movie) {
+//        return movieRepo.save(movie);
+//    }
+//
+//    public Optional<Movie> getAllMoviesForAuthenticatedUser() {
+//        // Get the email of the authenticated user
+//        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+//
+//        // Fetch movies based on the user (you might have a User entity linked to Movie entity)
+//        // Assuming there's a method like findByUserEmail in your MovieRepo
+//        return movieRepo.findByTitle(userEmail);
+//    }
 
 }
