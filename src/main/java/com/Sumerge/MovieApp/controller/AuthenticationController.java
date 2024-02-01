@@ -1,5 +1,9 @@
-package com.Sumerge.MovieApp.auth;
+package com.Sumerge.MovieApp.controller;
 
+import com.Sumerge.MovieApp.auth.AuthenticationRequest;
+import com.Sumerge.MovieApp.auth.AuthenticationResponse;
+import com.Sumerge.MovieApp.auth.AuthenticationService;
+import com.Sumerge.MovieApp.auth.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
