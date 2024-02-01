@@ -23,7 +23,6 @@ public class ApplicationConfig {
         return email -> repository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
         }
-
    @Bean
     public AuthenticationProvider authenticationProvider(){
             DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
