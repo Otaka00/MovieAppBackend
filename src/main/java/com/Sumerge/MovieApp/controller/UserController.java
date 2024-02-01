@@ -1,4 +1,4 @@
-package com.Sumerge.MovieApp.rest;
+package com.Sumerge.MovieApp.controller;
 
 import com.Sumerge.MovieApp.entity.User;
 import com.Sumerge.MovieApp.service.UserService;
