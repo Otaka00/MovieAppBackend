@@ -1,5 +1,6 @@
 package com.example.MoviesSVC.service;
 
+import com.example.MoviesSVC.client.AuthenticationServiceFeignClient;
 import com.example.MoviesSVC.model.Movie;
 import com.example.MoviesSVC.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
@@ -9,7 +10,9 @@ import org.springframework.data.domain.PageRequest;
 //import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -20,6 +23,10 @@ public class MovieService {
 
     @Autowired
     private ModelMapper mapper;
+    
+    @Autowired
+    private AuthenticationServiceFeignClient authServiceFeignClient;
+
 
     public Movie getMovieById(long id) {
         Optional<Movie> movie = movieRepo.findById(id);
@@ -34,9 +41,19 @@ public Page<Movie> getAllMovies(int page, int size) {
 
 
     public List<String> getAllMovieTitles(int page, int size) {
+        validateToken();
         return movieRepo.findAll(PageRequest.of(page, size))
                 .map(Movie::getTitle)
                 .toList();
+    }
+
+    private void validateToken() {
+        String token =  SecurityContextHolder.getContext().getAuthentication().getName();
+        Map<String, String> tokenMap = Collections.singletonMap("token", token);
+
+        // Call the authentication microservice to validate the token
+        Map<String, Object> validationResult = authServiceFeignClient.validateToken(tokenMap);
+
     }
 
 //    public Movie addMovie(Movie movie) {
