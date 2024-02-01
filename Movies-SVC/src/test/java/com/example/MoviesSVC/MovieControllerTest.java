@@ -43,17 +43,14 @@ public class MovieControllerTest {
 
     @Test
     public void testGetAllMovies() throws Exception {
-        // Mock the service response
-        Page<Movie> moviePage = ...; // Set up your mocked Page<Movie>
+        // Mock the service response using the helper method
+        Page<Movie> moviePage = MovieControllerTestHelper.createMockMoviePage();
         when(movieService.getAllMovies(0, 10)).thenReturn(moviePage);
 
         // Perform the request and assert the response
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/movies"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/movies"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers
-                .jsonPath("$.content.length()")
-                .value(moviePage.getContent().size()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.content.length()").value(moviePage.getContent().size()));
     }
 
     @Test
