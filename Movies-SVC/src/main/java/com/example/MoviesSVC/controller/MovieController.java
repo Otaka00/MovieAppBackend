@@ -1,4 +1,4 @@
-package com.example.MoviesSVC.rest;
+package com.example.MoviesSVC.controller;
 
 import com.example.MoviesSVC.model.Movie;
 import com.example.MoviesSVC.service.MovieService;

@@ -1,6 +1,5 @@
 package com.example.MoviesSVC;
 
-import com.example.MoviesSVC.dao.MovieDAO;
 import com.example.MoviesSVC.model.Movie;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
