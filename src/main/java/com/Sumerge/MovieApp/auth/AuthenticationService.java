@@ -6,8 +6,12 @@ import com.Sumerge.MovieApp.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+
 @Service
 @RequiredArgsConstructor
 
@@ -44,5 +48,11 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+    }
+
+    public UserDetails validate(HashMap<String, String> headers) {
+        String token = headers.get("authorization").substring(7);
+        String email = jwtService.extractUserName(token);
+        return repository.findByEmail(email).orElseThrow();
     }
 }

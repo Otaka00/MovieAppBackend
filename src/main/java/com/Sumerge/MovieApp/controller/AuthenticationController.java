@@ -9,10 +9,8 @@ import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +34,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
-    @PostMapping("/api/v1/auth/validate-token")
+    @GetMapping("/validate")
+    public ResponseEntity<UserDetails> validate(@RequestHeader HashMap<String, String> tokenMap) {
+        return ResponseEntity.ok(service.validate(tokenMap));
+    }
+    @PostMapping("validate-token")
     public ResponseEntity<Map<String, Object>> validateToken(@RequestBody Map<String, String> tokenMap) {
         String token = tokenMap.get("token");
 
