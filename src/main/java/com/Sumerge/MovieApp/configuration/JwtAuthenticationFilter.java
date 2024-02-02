@@ -1,6 +1,7 @@
 package com.Sumerge.MovieApp.configuration;
 
 import com.Sumerge.MovieApp.service.JwtService;
+import com.example.MoviesSVC.client.AuthenticationServiceFeignClient;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +31,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
     private UserDetails userDetails;
+
+    private final AuthenticationServiceFeignClient authenticationServiceFeignClient;
 
     @Override
     protected void doFilterInternal(
@@ -46,7 +51,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUserName(jwt);
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+        // Use Feign Client for token validation
+//        Map<String, String> tokenMap = Collections.singletonMap("token", jwt);
+//        Map<String, Object> validationResponse = authenticationServiceFeignClient.validateToken(tokenMap);
+//
+
+        if (/*(boolean) validationResponse.get("valid") &&*/ userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
             if (jwtService.isTokenValid(jwt, userDetails)) {
