@@ -29,7 +29,7 @@ import java.util.List;
         private static final String TOKEN_PREFIX = "Bearer ";
         private final String AUTH_URL = "http://localhost:8080/api/auth/validate";
 
-        private final RestTemplate restTemplate =new RestTemplate();
+        private final RestTemplate restTemplate = new RestTemplate();
         @Override
         protected void doFilterInternal(
                 @NonNull HttpServletRequest request,
@@ -65,7 +65,6 @@ import java.util.List;
             }
             catch (HttpClientErrorException e){
                 response.setStatus(403);
-                return;
             }
         }
     }
