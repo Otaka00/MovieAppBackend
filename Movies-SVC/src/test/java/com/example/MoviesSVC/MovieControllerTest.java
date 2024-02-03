@@ -1,13 +1,15 @@
 package com.example.MoviesSVC;
 
-import com.example.MoviesSVC.model.Movie;
 import com.example.MoviesSVC.controller.MovieController;
+import com.example.MoviesSVC.model.Movie;
 import com.example.MoviesSVC.service.MovieService;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -19,8 +21,11 @@ import static org.mockito.Mockito.when;
 @WebMvcTest(controllers = MovieController.class)
 public class MovieControllerTest {
 
-    @MockBean
+    @Mock
     private MovieService movieService;
+
+    @InjectMocks
+    private MovieController movieController;
 
     @Autowired
     private MockMvc mockMvc;
@@ -32,7 +37,10 @@ public class MovieControllerTest {
         when(movieService.getAllMovieTitles(0, 10)).thenReturn(movieTitles);
 
         // Perform the request and assert the response
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/movies/movie-titles"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/movies/movie-titles")
+                        .param("page", "0")
+                        .param("size", "10")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(movieTitles.size()));
     }
@@ -44,7 +52,10 @@ public class MovieControllerTest {
         when(movieService.getAllMovies(0, 10)).thenReturn(moviePage);
 
         // Perform the request and assert the response
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/movies"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/movies")
+                        .param("page", "0")
+                        .param("size", "10")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content.length()").value(moviePage.getContent().size()));
     }
@@ -56,7 +67,8 @@ public class MovieControllerTest {
         when(movieService.getMovieById(1L)).thenReturn(movie);
 
         // Perform the request and assert the response
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/movies/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/movies/1")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(movie.getId()));
     }
