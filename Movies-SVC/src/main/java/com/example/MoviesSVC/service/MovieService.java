@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -29,8 +28,6 @@ public class MovieService {
 
 //    @Autowired
 //    private AuthenticationServiceFeignClient authServiceFeignClient;
-
-    private static final String AUTHORIZATION_HEADER = "Authorization";
 
 
     public Movie getMovieById(long id) {
