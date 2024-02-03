@@ -21,12 +21,11 @@ public class SecurityConfig {
     protected final JwtAuthenticationFilter jwtAuthFilter;
     protected final AuthenticationProvider authenticationProvider;
 
-    // Added WebConfig Class so no need for
-    // .csrf(AbstractHttpConfigurer::disable)
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
                 .cors(Customizer.withDefaults())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers("/api/v1/auth/validate")
