@@ -1,20 +1,15 @@
 package com.example.MoviesSVC.service;
 
-import com.example.MoviesSVC.client.AuthenticationServiceFeignClient;
 import com.example.MoviesSVC.model.Movie;
 import com.example.MoviesSVC.repository.MovieRepository;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -29,8 +24,6 @@ public class MovieService {
 
 //    @Autowired
 //    private AuthenticationServiceFeignClient authServiceFeignClient;
-
-    private static final String AUTHORIZATION_HEADER = "Authorization";
 
 
     public Movie getMovieById(long id) {
