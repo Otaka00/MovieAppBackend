@@ -81,6 +81,30 @@ class MovieServiceTest {
         assertEquals(expectedMovies.size(), result.size());
         verify(mapper, times(expectedMovies.size())).map(any(), eq(Movie.class));
     }
+
+//    @Test
+//    public void testGetAllMovieTitles() {
+//        // Arrange
+//        int page = 0;
+//        int size = 10;
+//        PageRequest pageRequest = PageRequest.of(page, size);
+//        List<Movie> movies = List.of(
+//                new Movie(1L, "Movie 1", "Action", "Director 1", "Description 1"),
+//                new Movie(2L, "Movie 2", "Drama", "Director 2", "Description 2")
+//        );
+//
+//        Page<Movie> moviePage = mock(Page.class);
+//        when(movieRepo.findAll(pageRequest)).thenReturn(moviePage);
+//        when(moviePage.map(Movie::getTitle)).thenReturn(((Page<String>) List.of("Movie 1", "Movie 2"));
+//
+//        // Act
+//        List<String> result = movieService.getAllMovieTitles(page, size);
+//
+//        // Assert
+//        assertEquals(List.of("Movie 1", "Movie 2"), result);
+//        verify(movieRepo, times(1)).findAll(pageRequest);
+//    }
+
     @Test
     void testGetAllMoviesFirstPage() {
         int page = 0;

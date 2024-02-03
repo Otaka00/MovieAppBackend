@@ -42,9 +42,6 @@ public Page<Movie> getAllMovies(int page, int size) {
                 .map(Movie::getTitle)
                 .toList();
     }
-    public Movie addMovie(Movie movie) {
-        return movieRepo.save(movie);
-    }
 
 //        public Movie addMovie(Movie movie) {
 //        return movieRepo.insert(movie);
