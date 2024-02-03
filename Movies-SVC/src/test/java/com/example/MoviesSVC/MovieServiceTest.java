@@ -5,9 +5,11 @@ import com.example.MoviesSVC.repository.MovieRepository;
 import com.example.MoviesSVC.service.MovieService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -18,9 +20,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class MovieServiceTest {
 
     @Mock
@@ -73,6 +77,7 @@ class MovieServiceTest {
         List<Movie> result = movieService.getAllMovies(0, 10).getContent();
 
         // Verify the result
+        assertThat(result).isNotNull();
         assertEquals(expectedMovies.size(), result.size());
         verify(mapper, times(expectedMovies.size())).map(any(), eq(Movie.class));
     }
