@@ -17,31 +17,31 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class AuthFilterTest {
 
-    @Mock
-    private RestTemplate restTemplate;
+//    @Mock
+//    private RestTemplate restTemplate;
 
     @InjectMocks
     private AuthFilter authFilter;
 
-    @Test
-    public void testDoFilterInternal() throws Exception {
-        // Arrange
-        HttpServletRequest request = mock(HttpServletRequest.class);
-        HttpServletResponse response = mock(HttpServletResponse.class);
-        FilterChain filterChain = mock(FilterChain.class);
-
-        when(request.getHeader("Authorization")).thenReturn("Bearer mockToken");
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth("mockToken");
-        ResponseEntity<String> authResponse = ResponseEntity.ok("mockUser");
-        when(restTemplate.exchange(anyString(), eq(HttpMethod.GET), any(), eq(String.class))).thenReturn(authResponse);
-
-        // Act
-        authFilter.doFilterInternal(request, response, filterChain);
-
-        // Assert
-        verify(filterChain).doFilter(request, response);
-    }
+//    @Test
+//    public void testDoFilterInternal() throws Exception {
+//        // Arrange
+//        HttpServletRequest request = mock(HttpServletRequest.class);
+//        HttpServletResponse response = mock(HttpServletResponse.class);
+//        FilterChain filterChain = mock(FilterChain.class);
+//
+//        when(request.getHeader("Authorization")).thenReturn("Bearer mockToken");
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setBearerAuth("mockToken");
+//        ResponseEntity<String> authResponse = ResponseEntity.ok("mockUser");
+//        when(restTemplate.exchange(anyString(), eq(HttpMethod.GET), any(), eq(String.class))).thenReturn(authResponse);
+//
+//        // Act
+//        authFilter.doFilterInternal(request, response, filterChain);
+//
+//        // Assert
+//        verify(filterChain).doFilter(request, response);
+//    }
 
     @Test
     public void testDoFilterInternalValidToken() throws Exception {

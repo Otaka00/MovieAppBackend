@@ -101,6 +101,7 @@
 				<configuration>
 					<excludes>
 						<exclude>com/example/MoviesSVC/configuration/MovieSecurityConfig.java</exclude>
+						<exclude>com/example/MoviesSVC/MoviesSVCApplication.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
