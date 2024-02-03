@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.example.MoviesSVC")
 public class MoviesSvcApplication {
 
 	public static void main(String[] args) {

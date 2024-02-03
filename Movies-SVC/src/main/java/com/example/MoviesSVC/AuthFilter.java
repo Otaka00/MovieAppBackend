@@ -27,7 +27,7 @@ import java.util.List;
     public class AuthFilter extends OncePerRequestFilter {
         private static final String AUTHORIZATION_HEADER = "Authorization";
         private static final String TOKEN_PREFIX = "Bearer ";
-        private final String AUTH_URL = "http://localhost:8080/api/auth/validate";
+        private final String AUTH_URL = "http://localhost:8080/api/v1/auth/validate";
 
         private final RestTemplate restTemplate = new RestTemplate();
         @Override

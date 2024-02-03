@@ -65,7 +65,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 public class MovieSecurityConfig {
 
     private final AuthFilter authFilter;
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -73,6 +72,8 @@ public class MovieSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
+                                .requestMatchers("/api/v1/**")
+                                .permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )

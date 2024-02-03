@@ -7,16 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.lang.NonNull;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.RequestScope;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,8 +27,8 @@ public class MovieService {
     @Autowired
     private ModelMapper mapper;
 
-    @Autowired
-    private AuthenticationServiceFeignClient authServiceFeignClient;
+//    @Autowired
+//    private AuthenticationServiceFeignClient authServiceFeignClient;
 
     private static final String AUTHORIZATION_HEADER = "Authorization";
 
@@ -56,16 +50,20 @@ public Page<Movie> getAllMovies(int page, int size) {
                 .toList();
     }
 
-    private void validateToken(@NonNull HttpServletRequest request) {
-        String authHeader = request.getHeader(AUTHORIZATION_HEADER);
-        String jwt = authHeader.substring(7);
-        Map<String, String> tokenMap = Collections.singletonMap("token", jwt);
-        Map<String, Object> validationResponse = authServiceFeignClient.validateToken(tokenMap);
+//        public Movie addMovie(Movie movie) {
+//        return movieRepo.insert(movie);
+//    }
 
-//        if (!(boolean) validationResponse.get("valid")) {
-//            throw new Exception("Invalid token");
-//        }
-    }
+//    private void validateToken(@NonNull HttpServletRequest request) {
+//        String authHeader = request.getHeader(AUTHORIZATION_HEADER);
+//        String jwt = authHeader.substring(7);
+//        Map<String, String> tokenMap = Collections.singletonMap("token", jwt);
+//        Map<String, Object> validationResponse = authServiceFeignClient.validateToken(tokenMap);
+//
+////        if (!(boolean) validationResponse.get("valid")) {
+////            throw new Exception("Invalid token");
+////        }
+//    }
 
 
 //    private void validateToken() {

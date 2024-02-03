@@ -23,8 +23,7 @@ public class MovieController {
     private final MovieService movieService;
 
 @GetMapping()
-@PreAuthorize("isAuthenticated()")
-    public ResponseEntity<Page<Movie>> getAllMovies(
+public ResponseEntity<Page<Movie>> getAllMovies(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         Page<Movie> movies = movieService.getAllMovies(page, size);
@@ -32,7 +31,6 @@ public class MovieController {
     }
 
     @GetMapping("/movie-titles")
-    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<String>> getAllMoviesTitles(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -40,7 +38,6 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.OK).body(movies);
     }
     @GetMapping("/{id}")
-    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Movie> getMovieById(@PathVariable("id") long id) {
         Movie movie = movieService.getMovieById(id);
         return ResponseEntity.status(HttpStatus.OK).body(movie);
