@@ -50,11 +50,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUserName(jwt);
 
-        // Use Feign Client for token validation
-//        Map<String, String> tokenMap = Collections.singletonMap("token", jwt);
-//        Map<String, Object> validationResponse = authenticationServiceFeignClient.validateToken(tokenMap);
-//
-
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
