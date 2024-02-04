@@ -33,7 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private UserDetails userDetails;
 
     @Override
-    protected void doFilterInternal(
+    public void doFilterInternal(
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
@@ -55,8 +55,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 //        Map<String, Object> validationResponse = authenticationServiceFeignClient.validateToken(tokenMap);
 //
 
-        if (/*(boolean) validationResponse.get("valid") &&*/ userEmail != null
-                && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
             if (jwtService.isTokenValid(jwt, userDetails)) {

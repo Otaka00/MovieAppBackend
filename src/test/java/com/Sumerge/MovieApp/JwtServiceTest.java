@@ -5,14 +5,11 @@
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Spy;
 //import org.mockito.junit.jupiter.MockitoExtension;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.boot.test.context.TestConfiguration;
 //import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.test.context.TestPropertySource;
 //import org.springframework.test.util.ReflectionTestUtils;
 //import java.util.HashMap;
 //import java.util.Map;
@@ -40,13 +37,6 @@
 //    }
 //
 //    @Test
-//    void extractAllClaims_ValidToken_ReturnsClaims() {
-//        String token = generateValidToken();
-//        Claims claims = jwtService.extractAllClaims(token);
-//        assertNotNull(claims);
-//    }
-//
-//    @Test
 //    void extractClaim_ValidToken_ReturnsClaim() {
 //        String token = generateValidToken();
 //        String subject = jwtService.extractUserName(token);
@@ -65,12 +55,6 @@
 //        UserDetails userDetails = user;
 //        String token = jwtService.generateToken(userDetails);
 //        assertTrue(jwtService.isTokenValid(token, userDetails));
-//    }
-//
-//    @Test
-//    void isTokenExpired_ValidToken_ReturnsFalse() {
-//        String token = generateValidToken();
-//        assertFalse(jwtService.isTokenExpired(token));
 //    }
 //
 //    private String generateValidToken() {
