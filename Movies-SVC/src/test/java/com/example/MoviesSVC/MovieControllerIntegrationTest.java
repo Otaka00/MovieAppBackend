@@ -39,8 +39,8 @@ public class MovieControllerIntegrationTest {
 
         // Mock data
         List<Movie> expectedMovies = Arrays.asList(
-                new Movie(1L, "Movie1", "Genre1", "Director1", "Description1"),
-                new Movie(2L, "Movie2", "Genre2", "Director2", "Description2")
+                new Movie(1L, "Movie1", "Genre1", "Director1", "Description1", "poster1"),
+                new Movie(2L, "Movie2", "Genre2", "Director2", "Description2", "poster2")
                 // Add more movies as needed
         );
 
@@ -53,7 +53,7 @@ public class MovieControllerIntegrationTest {
                 .thenAnswer(invocation -> {
                     Movie sourceMovie = invocation.getArgument(0);
                     // Simulate mapping by returning a new Movie with the same title
-                    return new Movie(null, sourceMovie.getTitle(), null, null, null);
+                    return new Movie(1L, sourceMovie.getTitle(), null, null, null, null);
                 });
 
         // Call the service method

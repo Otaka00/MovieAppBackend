@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "movies")
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private long id;
     private String title;
+    private String description;
     private String genre;
     private String director;
-    private String description;
+    private String poster_path;
 }

@@ -24,8 +24,8 @@ public class MovieControllerTestHelper {
     private static List<Movie> createMockMovies() {
         List<Movie> movies = new ArrayList<>();
         // Add some mocked movies to the list
-        movies.add(new Movie(1L, "Movie1", "Genre1", "Director1", "Description1"));
-        movies.add(new Movie(2L, "Movie2", "Genre2", "Director2", "Description2"));
+        movies.add(new Movie(1L, "Movie1", "Genre1", "Director1", "Description1", "poster1"));
+        movies.add(new Movie(2L, "Movie2", "Genre2", "Director2", "Description2", "poster2"));
         // Add more movies as needed
         return movies;
     }
