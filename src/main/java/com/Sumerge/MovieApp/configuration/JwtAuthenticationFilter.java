@@ -1,12 +1,10 @@
 package com.Sumerge.MovieApp.configuration;
 
 import com.Sumerge.MovieApp.service.JwtService;
-import com.example.MoviesSVC.client.AuthenticationServiceFeignClient;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
