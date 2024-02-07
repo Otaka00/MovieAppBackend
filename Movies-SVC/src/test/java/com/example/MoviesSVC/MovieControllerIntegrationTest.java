@@ -11,12 +11,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -35,7 +37,7 @@ public class MovieControllerIntegrationTest {
     @Test
     void testGetAllMovies() {
         // Mock authentication
-//        mockAuthentication();
+        mockAuthentication();
 
         // Mock data
         List<Movie> expectedMovies = Arrays.asList(
@@ -64,11 +66,11 @@ public class MovieControllerIntegrationTest {
         verify(mapper, times(expectedMovies.size())).map(any(), eq(Movie.class));
     }
 
-//    private void mockAuthentication() {
-//        Authentication authentication = Mockito.mock(Authentication.class);
-//        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
-//        when(securityContext.getAuthentication()).thenReturn(authentication);
-//        SecurityContextHolder.setContext(securityContext);
-//    }
+    private void mockAuthentication() {
+        Authentication authentication = Mockito.mock(Authentication.class);
+        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+        when(securityContext.getAuthentication()).thenReturn(authentication);
+        SecurityContextHolder.setContext(securityContext);
+    }
 
 }
