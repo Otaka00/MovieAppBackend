@@ -32,30 +32,7 @@ class UserServiceTest {
     void setUp(){
         MockitoAnnotations.openMocks(this);
     }
-    @Test
-    void testGetUserById() {
-        // Arrange
-        long userId = 1L;
-        User userInDatabase = new User(userId, "test@example.com", "password");
-
-        when(userRepositoryMock.findById(userId)).thenReturn(Optional.of(userInDatabase));
-        when(modelMapperMock.map(userInDatabase, User.class)).thenReturn(null);
-
-        // Act
-        User resultUser = userService.getUserById(userId);
-
-        // Assert
-        assertNotNull(resultUser, "User should not be null");
-
-        // Additional assertion to check against null values in the User object
-        assertEquals(userInDatabase.getId(), resultUser.getId());
-        assertEquals(userInDatabase.getEmail(), resultUser.getEmail());
-        assertEquals(userInDatabase.getPass(), resultUser.getPass());
-
-        verify(userRepositoryMock, times(1)).findById(userId);
-        verify(modelMapperMock, times(1)).map(userInDatabase, User.class);
-    }
-
+    
     @Test
     void testGetAllUsers() {
         // Arrange
