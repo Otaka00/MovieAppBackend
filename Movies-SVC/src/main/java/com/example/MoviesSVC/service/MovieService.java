@@ -22,9 +22,6 @@ public class MovieService {
     @Autowired
     private ModelMapper mapper;
 
-//    @Autowired
-//    private AuthenticationServiceFeignClient authServiceFeignClient;
-
 
     public Movie getMovieById(long id) {
         Optional<Movie> movie = movieRepo.findById(id);
