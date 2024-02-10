@@ -18,9 +18,6 @@ public class JwtService {
 
     private static final String SECRET_KEY = "90e78a5375b0cc6d2a0518cb1810416772953847a5287487b37b63d378e3158f";
 
-    public String getSecretKey() {
-        return SECRET_KEY;
-    }
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -73,5 +70,9 @@ public class JwtService {
     private Key getSignInKey() {
         byte [] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public String getSecretKey() {
+        return SECRET_KEY;
     }
 }

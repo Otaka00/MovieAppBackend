@@ -30,5 +30,4 @@ public class UserService {
                 .map(user -> mapper.map(user, User.class))
                 .collect(Collectors.toList());
     }
-
 }

@@ -16,21 +16,21 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-    private final AuthenticationService service;
+    private final AuthenticationService authService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request)
     {
-        return ResponseEntity.ok(service.register(request));
+        return ResponseEntity.ok(authService.register(request));
     }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request)
     {
-        return ResponseEntity.ok(service.authenticate(request));
+        return ResponseEntity.ok(authService.authenticate(request));
     }
 
     @GetMapping("/validate")
     public ResponseEntity<UserDetails> validate(@RequestHeader HashMap<String, String> headers) {
-        return ResponseEntity.ok(service.validate(headers));
+        return ResponseEntity.ok(authService.validate(headers));
     }
 }

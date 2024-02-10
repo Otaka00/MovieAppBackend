@@ -32,7 +32,7 @@ public class AuthenticationService {
                 .pass(passwordEncoder.encode(request.getPassword()))
                 .build();
 
-        repository.save(user); // Save the user to the repository
+        repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
