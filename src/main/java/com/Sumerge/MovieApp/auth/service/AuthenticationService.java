@@ -1,8 +1,11 @@
-package com.Sumerge.MovieApp.auth;
+package com.Sumerge.MovieApp.auth.service;
 
+import com.Sumerge.MovieApp.auth.model.AuthenticationRequest;
+import com.Sumerge.MovieApp.auth.model.AuthenticationResponse;
+import com.Sumerge.MovieApp.auth.model.RegisterRequest;
 import com.Sumerge.MovieApp.entity.User;
 import com.Sumerge.MovieApp.repository.UserRepository;
-import com.Sumerge.MovieApp.service.JwtService;
+import com.Sumerge.MovieApp.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.management.relation.Role;
 import java.util.HashMap;
 
 @Service

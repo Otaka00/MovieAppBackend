@@ -1,7 +1,7 @@
 package com.Sumerge.MovieApp;
 
-import com.Sumerge.MovieApp.configuration.JwtAuthenticationFilter;
-import com.Sumerge.MovieApp.service.JwtService;
+import com.Sumerge.MovieApp.jwt.JwtAuthenticationFilter;
+import com.Sumerge.MovieApp.jwt.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,6 +1,6 @@
 package com.example.MoviesSVC.configuration;
 
-import com.example.MoviesSVC.AuthFilter;
+import com.example.MoviesSVC.filter.AuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

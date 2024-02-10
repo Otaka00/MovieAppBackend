@@ -1,4 +1,4 @@
-package com.Sumerge.MovieApp.auth;
+package com.Sumerge.MovieApp.auth.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

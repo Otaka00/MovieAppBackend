@@ -1,10 +1,10 @@
 package com.Sumerge.MovieApp;
 
-import com.Sumerge.MovieApp.auth.AuthenticationRequest;
-import com.Sumerge.MovieApp.auth.AuthenticationResponse;
-import com.Sumerge.MovieApp.auth.AuthenticationService;
-import com.Sumerge.MovieApp.auth.RegisterRequest;
-import com.Sumerge.MovieApp.controller.AuthenticationController;
+import com.Sumerge.MovieApp.auth.model.AuthenticationRequest;
+import com.Sumerge.MovieApp.auth.model.AuthenticationResponse;
+import com.Sumerge.MovieApp.auth.service.AuthenticationService;
+import com.Sumerge.MovieApp.auth.model.RegisterRequest;
+import com.Sumerge.MovieApp.auth.controller.AuthenticationController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

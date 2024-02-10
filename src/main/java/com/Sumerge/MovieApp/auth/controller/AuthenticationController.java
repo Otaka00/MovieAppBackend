@@ -1,19 +1,15 @@
-package com.Sumerge.MovieApp.controller;
+package com.Sumerge.MovieApp.auth.controller;
 
-import com.Sumerge.MovieApp.auth.AuthenticationRequest;
-import com.Sumerge.MovieApp.auth.AuthenticationResponse;
-import com.Sumerge.MovieApp.auth.AuthenticationService;
-import com.Sumerge.MovieApp.auth.RegisterRequest;
-import com.Sumerge.MovieApp.service.JwtService;
-import io.jsonwebtoken.*;
+import com.Sumerge.MovieApp.auth.model.AuthenticationRequest;
+import com.Sumerge.MovieApp.auth.model.AuthenticationResponse;
+import com.Sumerge.MovieApp.auth.service.AuthenticationService;
+import com.Sumerge.MovieApp.auth.model.RegisterRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/auth")

@@ -1,6 +1,6 @@
 package com.Sumerge.MovieApp;
 
-import com.Sumerge.MovieApp.service.JwtService;
+import com.Sumerge.MovieApp.jwt.JwtService;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

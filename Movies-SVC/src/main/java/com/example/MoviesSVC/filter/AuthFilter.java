@@ -1,4 +1,4 @@
-package com.example.MoviesSVC;
+package com.example.MoviesSVC.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
