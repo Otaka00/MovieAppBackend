@@ -46,7 +46,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(MovieController.class)
 @ExtendWith(MockitoExtension.class)
 
-//@WireMockTest(httpPort = 8081)
+@WireMockTest(httpPort = 8081)
 class MovieControllerTest {
 
     @Autowired
