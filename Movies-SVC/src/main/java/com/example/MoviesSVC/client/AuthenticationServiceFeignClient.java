@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.Map;
-@FeignClient(name = "authentication-service", url = "${authentication-service.url}")
+@FeignClient(name = "authentication-service", url = "http://localhost:8080/api/v1/auth")
 @Component
 public interface AuthenticationServiceFeignClient {
-    @GetMapping("/api/v1/validate")
-    ResponseEntity<String> validateToken(@RequestHeader("Authorization") String authorizationHeader);
+    @GetMapping("/validate")
+    ResponseEntity<Map<String, String>> validateToken(@RequestHeader("Authorization") String authorizationHeader);
 
 }

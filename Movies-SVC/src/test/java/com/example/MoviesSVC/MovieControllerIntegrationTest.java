@@ -95,5 +95,4 @@ public class MovieControllerIntegrationTest extends WireMockTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals("[{\"id\":1,\"title\":\"Movie 1\"},{\"id\":2,\"title\":\"Movie 2\"}]", responseEntity.getBody());
     }
-
 }
