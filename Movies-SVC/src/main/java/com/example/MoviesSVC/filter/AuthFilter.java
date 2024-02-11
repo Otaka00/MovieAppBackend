@@ -39,7 +39,6 @@ import java.util.List;
 
             final String authHeader = request.getHeader(AUTHORIZATION_HEADER);
             final String jwtToken;
-            final String email;
 
             if(authHeader == null || !authHeader.startsWith(TOKEN_PREFIX)){
                 response.setStatus(403);

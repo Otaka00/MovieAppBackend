@@ -35,7 +35,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static org.hamcrest.Matchers.hasSize;
+
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -62,13 +62,12 @@ class MovieControllerTest {
         wireMockServer = new WireMockServer(WireMockConfiguration.wireMockConfig().port(8081));
         wireMockServer.start();
         WireMock.configureFor("localhost", 8081);
-//        WireMock.reset();
     }
 
-//    @AfterAll
-//    static void tearDown() {
-//        wireMockServer.stop();
-//    }
+    @AfterAll
+    static void tearDown() {
+        wireMockServer.stop();
+    }
 
     @Test
     void testGetAllMoviesWithWireMock() throws Exception {
@@ -97,11 +96,56 @@ class MovieControllerTest {
         // Performing a GET request to "/movies/{id}"
         mockMvc.perform(MockMvcRequestBuilders.get("/movies/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Movie Title"));
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Movie Title"));
+    }
+
+    @Test
+    void testGetMovieByIdWithMockedAuthentication() throws Exception {
+        int movieId = 1;
+
+        WireMock.stubFor(WireMock.get(urlEqualTo("/api/v1"))
+                .willReturn(WireMock.aResponse()
+                        .withStatus(200)
+                        .withBody("OK")));
+        List<Movie> mockMovies = createMockMovies();
+        Page<Movie> mockPage = new PageImpl<>(mockMovies);
+        Mockito.when(movieService.getAllMovies(Mockito.any(), Integer.parseInt(Mockito.anyString()))).thenReturn(mockPage);
+
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/movies")
+                        .param("page", "0")
+                        .param("size", "1")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer testToken")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].title").value(mockMovies.get(0).getTitle()))
+                .andExpect(jsonPath("$[0].description").value(mockMovies.get(0).getDescription()));
+        String jsonResponse = resultActions.andReturn().getResponse().getContentAsString();
+        System.out.println("JSON Response: " + jsonResponse);
+    }
+    private List<Movie> createMockMovies() {
+        return Arrays.asList(
+                Movie.builder()
+                        .id(278)
+                        .description("Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.")
+                        .poster_path("/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg")
+                        .genre("")
+                        .director("")
+                        .title("The Shawshank Redemption")
+                        .build(),
+                Movie.builder()
+                        .id(238)
+                        .title("The Godfather")
+                        .poster_path("/3bhkrj58Vtu7enYsRolD1fZdja1.jpg")
+                        .genre("1972-03-14")
+                        .director("The Godfather")
+                        .build()
+        );
     }
 }
+
+
 
 //
 //@SpringBootTest
@@ -209,23 +253,3 @@ class MovieControllerTest {
 //                .andExpect(content().string("Unauthorized access"));
 //    }
 //
-//    private List<Movie> createMockMovies() {
-//        return Arrays.asList(
-//                Movie.builder()
-//                        .id(278)
-//                        .description("Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.")
-//                        .poster_path("/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg")
-//                        .genre("")
-//                        .director("")
-//                        .title("The Shawshank Redemption")
-//                        .build(),
-//                Movie.builder()
-//                        .id(238)
-//                        .title("The Godfather")
-//                        .poster_path("/3bhkrj58Vtu7enYsRolD1fZdja1.jpg")
-//                        .genre("1972-03-14")
-//                        .director("The Godfather")
-//                        .build()
-//        );
-//    }
-//}
