@@ -52,7 +52,7 @@ import java.util.List;
             HttpEntity<String> entity = new HttpEntity<>(headers);
 
             try {
-                ResponseEntity<String>authResponse = restTemplate.exchange(AUTH_URL, HttpMethod.GET, entity, String.class);
+                ResponseEntity<String> authResponse = restTemplate.exchange(AUTH_URL, HttpMethod.GET, entity, String.class);
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                         authResponse.getBody(),
                         null,
