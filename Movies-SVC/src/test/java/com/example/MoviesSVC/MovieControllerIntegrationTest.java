@@ -1,5 +1,6 @@
 package com.example.MoviesSVC;
 
+import com.example.MoviesSVC.controller.MovieController;
 import com.example.MoviesSVC.model.Movie;
 import com.example.MoviesSVC.repository.MovieRepository;
 import com.example.MoviesSVC.service.MovieService;
@@ -9,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -47,7 +49,6 @@ public class MovieControllerIntegrationTest extends WireMockTest {
         List<Movie> expectedMovies = Arrays.asList(
                 new Movie(1L, "Movie1", "Genre1", "Director1", "Description1", "poster1"),
                 new Movie(2L, "Movie2", "Genre2", "Director2", "Description2", "poster2")
-                // Add more movies as needed
         );
 
         // Mock repository response
@@ -63,7 +64,7 @@ public class MovieControllerIntegrationTest extends WireMockTest {
                 });
 
         // Call the service method
-        List<Movie> result = movieService.getAllMovies(0, 10).getContent(); // Assuming 0-based page index and page size of 10
+        List<Movie> result = movieService.getAllMovies(0, 10).getContent();
 
         // Verify the result
         assertEquals(expectedMovies.size(), result.size());
@@ -93,8 +94,6 @@ public class MovieControllerIntegrationTest extends WireMockTest {
         // Verify that the response is as expected
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals("[{\"id\":1,\"title\":\"Movie 1\"},{\"id\":2,\"title\":\"Movie 2\"}]", responseEntity.getBody());
-
-        // You can add more assertions based on the expected behavior of your application
     }
 
 }
