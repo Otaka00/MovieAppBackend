@@ -19,10 +19,11 @@ public class MovieController {
 
     private final MovieService movieService;
 
-@GetMapping()
-public ResponseEntity<Page<Movie>> getAllMovies(
+    @GetMapping()
+    public ResponseEntity<Page<Movie>> getAllMovies(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "10") int size)
+    {
         Page<Movie> movies = movieService.getAllMovies(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(movies);
     }

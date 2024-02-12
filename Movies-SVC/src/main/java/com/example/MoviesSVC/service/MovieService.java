@@ -22,7 +22,6 @@ public class MovieService {
     @Autowired
     private ModelMapper mapper;
 
-
     public Movie getMovieById(long id) {
         Optional<Movie> movie = movieRepo.findById(id);
         Movie movieResponse = mapper.map(movie, Movie.class);
@@ -39,43 +38,4 @@ public Page<Movie> getAllMovies(int page, int size) {
                 .map(Movie::getTitle)
                 .toList();
     }
-
-//        public Movie addMovie(Movie movie) {
-//        return movieRepo.insert(movie);
-//    }
-
-//    private void validateToken(@NonNull HttpServletRequest request) {
-//        String authHeader = request.getHeader(AUTHORIZATION_HEADER);
-//        String jwt = authHeader.substring(7);
-//        Map<String, String> tokenMap = Collections.singletonMap("token", jwt);
-//        Map<String, Object> validationResponse = authServiceFeignClient.validateToken(tokenMap);
-//
-////        if (!(boolean) validationResponse.get("valid")) {
-////            throw new Exception("Invalid token");
-////        }
-//    }
-
-
-//    private void validateToken() {
-//        String token =  SecurityContextHolder.getContext().getAuthentication().getName();
-//        Map<String, String> tokenMap = Collections.singletonMap("token", token);
-//
-//        // Call the authentication microservice to validate the token
-//        Map<String, Object> validationResult = authServiceFeignClient.validateToken(tokenMap);
-//
-//    }
-
-//    public Movie addMovie(Movie movie) {
-//        return movieRepo.save(movie);
-//    }
-//
-//    public Optional<Movie> getAllMoviesForAuthenticatedUser() {
-//        // Get the email of the authenticated user
-//        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-//
-//        // Fetch movies based on the user (you might have a User entity linked to Movie entity)
-//        // Assuming there's a method like findByUserEmail in your MovieRepo
-//        return movieRepo.findByTitle(userEmail);
-//    }
-
 }

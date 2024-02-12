@@ -4,6 +4,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,48 +23,51 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
-    @Component
-    @RequiredArgsConstructor
-    public class AuthFilter extends OncePerRequestFilter {
-        private static final String AUTHORIZATION_HEADER = "Authorization";
-        private static final String TOKEN_PREFIX = "Bearer ";
-        private final String AUTH_URL = "http://localhost:8080/api/v1/auth/validate";
+@Component
+@RequiredArgsConstructor
+public class AuthFilter extends OncePerRequestFilter {
+    @Value("${auth.filter.authorization-header}")
+    private String AUTHORIZATION_HEADER;
 
-        private final RestTemplate restTemplate = new RestTemplate();
-        @Override
-        protected void doFilterInternal(
-                @NonNull HttpServletRequest request,
-                @NonNull HttpServletResponse response,
-                @NonNull FilterChain filterChain
-        ) throws ServletException, IOException {
+    @Value("${auth.filter.token-prefix}")
+    private String TOKEN_PREFIX;
 
-            final String authHeader = request.getHeader(AUTHORIZATION_HEADER);
-            final String jwtToken;
+    @Value("${auth.filter.auth-url}")
+    private String AUTH_URL;
+    private final RestTemplate restTemplate = new RestTemplate();
+    @Override
+    protected void doFilterInternal(
+            @NonNull HttpServletRequest request,
+            @NonNull HttpServletResponse response,
+            @NonNull FilterChain filterChain
+    ) throws ServletException, IOException {
 
-            if(authHeader == null || !authHeader.startsWith(TOKEN_PREFIX)){
-                response.setStatus(403);
-                return;
+        final String authHeader = request.getHeader(AUTHORIZATION_HEADER);
+        final String jwtToken;
+
+        if(authHeader == null || !authHeader.startsWith(TOKEN_PREFIX)){
+            response.setStatus(403);
+            return;
+        }
+
+        jwtToken = authHeader.substring(7);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(jwtToken);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        try {
+            ResponseEntity<String> authResponse = restTemplate.exchange(AUTH_URL, HttpMethod.GET, entity, String.class);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(
+                    authResponse.getBody(),
+                    null,
+                    List.of(new SimpleGrantedAuthority("USER"))
+            );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            if(authResponse.getStatusCode().is2xxSuccessful())
+                filterChain.doFilter(request, response);
             }
-
-            jwtToken = authHeader.substring(7);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(jwtToken);
-            HttpEntity<String> entity = new HttpEntity<>(headers);
-
-            try {
-                ResponseEntity<String> authResponse = restTemplate.exchange(AUTH_URL, HttpMethod.GET, entity, String.class);
-                Authentication authentication = new UsernamePasswordAuthenticationToken(
-                        authResponse.getBody(),
-                        null,
-                        List.of(new SimpleGrantedAuthority("USER"))
-                );
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                if(authResponse.getStatusCode().is2xxSuccessful()){
-                    filterChain.doFilter(request, response);
-                }
-            }
-            catch (HttpClientErrorException e){
-                response.setStatus(403);
-            }
+        catch (HttpClientErrorException e){
+            response.setStatus(403);
         }
     }
+}
