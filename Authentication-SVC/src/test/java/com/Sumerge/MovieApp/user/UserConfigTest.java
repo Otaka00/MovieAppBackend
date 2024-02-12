@@ -1,4 +1,4 @@
-package com.Sumerge.MovieApp;
+package com.Sumerge.MovieApp.user;
 
 import com.Sumerge.MovieApp.configuration.UserConfig;
 import org.junit.jupiter.api.Test;

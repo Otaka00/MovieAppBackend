@@ -1,4 +1,4 @@
-package com.Sumerge.MovieApp;
+package com.Sumerge.MovieApp.jwt;
 
 import com.Sumerge.MovieApp.jwt.JwtService;
 import io.jsonwebtoken.Claims;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;

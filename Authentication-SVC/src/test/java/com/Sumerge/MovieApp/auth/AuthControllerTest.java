@@ -1,4 +1,4 @@
-package com.Sumerge.MovieApp;
+package com.Sumerge.MovieApp.auth;
 
 import com.Sumerge.MovieApp.auth.model.AuthenticationRequest;
 import com.Sumerge.MovieApp.auth.model.AuthenticationResponse;

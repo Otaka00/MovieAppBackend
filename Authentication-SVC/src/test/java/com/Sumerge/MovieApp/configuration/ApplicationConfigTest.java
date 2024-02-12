@@ -1,4 +1,4 @@
-package com.Sumerge.MovieApp;
+package com.Sumerge.MovieApp.configuration;
 
 import com.Sumerge.MovieApp.configuration.ApplicationConfig;
 import com.Sumerge.MovieApp.repository.UserRepository;

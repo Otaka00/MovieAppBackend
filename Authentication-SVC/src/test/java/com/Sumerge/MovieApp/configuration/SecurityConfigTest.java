@@ -1,4 +1,4 @@
-package com.Sumerge.MovieApp;
+package com.Sumerge.MovieApp.configuration;
 
 import com.Sumerge.MovieApp.jwt.JwtAuthenticationFilter;
 import com.Sumerge.MovieApp.configuration.SecurityConfig;
