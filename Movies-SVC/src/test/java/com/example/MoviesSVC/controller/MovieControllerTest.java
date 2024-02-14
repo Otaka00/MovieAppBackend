@@ -1,4 +1,4 @@
-package com.example.MoviesSVC;
+package com.example.MoviesSVC.controller;
 import com.example.MoviesSVC.controller.MovieController;
 import com.example.MoviesSVC.model.Movie;
 import com.example.MoviesSVC.service.MovieService;
@@ -44,8 +44,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(MovieController.class)
 @ExtendWith(MockitoExtension.class)
-
-//@WireMockTest(httpPort = 8081)
 class MovieControllerTest {
 
     @Autowired

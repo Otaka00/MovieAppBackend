@@ -1,6 +1,6 @@
-package com.example.MoviesSVC;
+package com.example.MoviesSVC.controller;
 
-import com.example.MoviesSVC.controller.MovieController;
+import com.example.MoviesSVC.wiremock.WireMockTest;
 import com.example.MoviesSVC.model.Movie;
 import com.example.MoviesSVC.repository.MovieRepository;
 import com.example.MoviesSVC.service.MovieService;
@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;

@@ -1,4 +1,4 @@
-package com.example.MoviesSVC;
+package com.example.MoviesSVC.wiremock;
 
 import com.example.MoviesSVC.model.Movie;
 import com.example.MoviesSVC.repository.MovieRepository;

@@ -1,4 +1,4 @@
-package com.example.MoviesSVC;
+package com.example.MoviesSVC.wiremock;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;

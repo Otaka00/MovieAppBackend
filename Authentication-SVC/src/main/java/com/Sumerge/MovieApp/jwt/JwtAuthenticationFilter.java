@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +20,7 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
+@Setter
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Value("${auth.filter.authorization-header}")
@@ -26,6 +28,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Value("${auth.filter.token-prefix}")
     private String TOKEN_PREFIX;
+
 
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;

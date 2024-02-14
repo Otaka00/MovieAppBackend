@@ -4,6 +4,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -25,15 +27,18 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Setter
 public class AuthFilter extends OncePerRequestFilter {
+
     @Value("${auth.filter.authorization-header}")
-    private String AUTHORIZATION_HEADER;
+     String AUTHORIZATION_HEADER;
 
     @Value("${auth.filter.token-prefix}")
     private String TOKEN_PREFIX;
 
     @Value("${auth.filter.auth-url}")
     private String AUTH_URL;
+
     private final RestTemplate restTemplate = new RestTemplate();
     @Override
     protected void doFilterInternal(

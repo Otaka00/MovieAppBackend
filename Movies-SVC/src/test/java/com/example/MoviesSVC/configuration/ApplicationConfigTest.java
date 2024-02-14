@@ -1,4 +1,4 @@
-package com.example.MoviesSVC;
+package com.example.MoviesSVC.configuration;
 import com.example.MoviesSVC.configuration.ApplicationConfig;
 import com.example.MoviesSVC.service.MovieService;
 import org.junit.jupiter.api.Test;
